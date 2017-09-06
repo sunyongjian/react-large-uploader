@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import BigUpload from '../lib/upload.js';
+import BigUpload from '../src/upload.jsx';
 
 const App = () => {
   const option = {

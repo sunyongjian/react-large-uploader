@@ -1,6 +1,6 @@
 import React from 'react';
 import 'expose-loader?$!expose-loader?jQuery!jquery';
-import WebUploader from '../web/webuploader.html5only';
+import WebUploader from '../web/webuploader.nolog.min';
 import '../web/webuploader.css';
 import './upload.css';
 
@@ -9,6 +9,10 @@ const uploadStatusConfig = {
   init: {
     btn: '开始上传',
     clickName: 'upload',
+    barClassName: 'process-bar',
+  },
+  md5: {
+    btn: '计算md5中...',
     barClassName: 'process-bar',
   },
   process: {
@@ -34,6 +38,7 @@ export default class BigUpload extends React.Component {
     this.state = {
       fileList: [],
       uploadStatus: 'init',
+      isMd5: false,
     };
     this.fileIds = [];
     this.complete = 0;
@@ -53,19 +58,49 @@ export default class BigUpload extends React.Component {
       ...option,
     });
     uploader.on('fileQueued', this.handleFileQueued);
+    uploader.on('uploadBeforeSend', this.handleBeforeSend);
     uploader.on('uploadProgress', this.handleUploadProgress);
     uploader.on('uploadError', this.handleUploadError);
     uploader.on('uploadSuccess', this.handleUploadSuccess);
     this.uploader = uploader;
   }
 
+  setFileItem = (key, value, id) => {
+    const { fileList } = this.state;
+    const copy = [...fileList];
+    const result = copy.filter(item => item.id === id);
+    if (result.length) {
+      result[0][key] = value;
+      this.setState({
+        fileList: copy,
+      });
+    }
+  }
+
+  setUploadStatus = currying(this.setFileItem, 'uploadStatus')
+
   handleFileQueued = file => {
     const { fileList } = this.state;
     file.percentage = 0;
-    file.uploadStatus = 'init';
+    file.uploadStatus = 'md5';
+    this.uploader.md5File(file)
+      .progress(() => {
+        this.setUploadStatus('md5', file.id);
+      })
+      // 完成
+      .then((val) => {
+        this.setUploadStatus('init', file.id);
+        this.setFileItem('md5Val', val, file.id);
+      });
     this.setState({
       fileList: [...fileList, file],
     });
+  }
+
+  handleBeforeSend = (block, data) => {
+    const file = block.file;
+    const fileMd5 = file.md5Val;
+    data.md5Value = fileMd5;
   }
 
   handleUploadProgress = (file, percentage) => {
@@ -83,20 +118,6 @@ export default class BigUpload extends React.Component {
     this.props.onChange(file);
     this.setUploadStatus('done', file.id);
   }
-
-  setFileItem = (key, value, id) => {
-    const { fileList } = this.state;
-    const copy = [...fileList];
-    const result = copy.filter(item => item.id === id);
-    if (result.length) {
-      result[0][key] = value;
-      this.setState({
-        fileList: copy,
-      });
-    }
-  }
-
-  setUploadStatus = currying(this.setFileItem, 'uploadStatus')
 
   upload = (id) => () => {
     this.uploader.upload(id);
