@@ -45,7 +45,7 @@ export default class BigUpload extends React.Component {
   }
 
   componentDidMount() {
-    const { option } = this.props;
+    const { options } = this.props;
     const uploader = WebUploader.create({
       auto: false,
       chunked: true,
@@ -55,7 +55,7 @@ export default class BigUpload extends React.Component {
       threads: 1,
       fileSizeLimit: 2000 * 1024 * 1024,
       fileSingleSizeLimit: 2000 * 1024 * 1024,
-      ...option,
+      ...options,
     });
     uploader.on('fileQueued', this.handleFileQueued);
     uploader.on('uploadBeforeSend', this.handleBeforeSend);
@@ -81,7 +81,7 @@ export default class BigUpload extends React.Component {
 
   handleFileQueued = file => {
     const { fileList } = this.state;
-    const { option: { auto } } = this.props;
+    const { options: { auto } } = this.props;
     file.percentage = 0;
     file.uploadStatus = 'md5';
     this.uploader.md5File(file)

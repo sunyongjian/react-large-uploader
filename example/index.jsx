@@ -3,17 +3,17 @@ import { render } from 'react-dom';
 import BigUpload from '../src/upload.jsx';
 
 const App = () => {
-  const option = {
+  const options = {
     resize: false,
     auto: true,
     server: '/upload',
   };
   return (
     <BigUpload
-      option={option}
+      options={options}
       border={false}
       width={300}
-      onChange={(obj) => console.log(obj)}
+      onChange={(file) => console.log(file)}
     >
       <div>选择</div>
     </BigUpload>
