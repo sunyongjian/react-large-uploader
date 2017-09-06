@@ -1,0 +1,188 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'publish' ]
+2 info using npm@3.10.10
+3 info using node@v6.11.2
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   escapedName: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/Users/syj/sun/react-large-uploader',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /Users/syj/.npm/react-large-uploader/0.0.2/package.tgz not in flight; packing
+9 verbose correctMkdir /Users/syj/.npm correctMkdir not in flight; initializing
+10 info lifecycle react-large-uploader@0.0.2~prepublish: react-large-uploader@0.0.2
+11 silly lifecycle react-large-uploader@0.0.2~prepublish: no script for prepublish, continuing
+12 verbose tar pack [ '/Users/syj/.npm/react-large-uploader/0.0.2/package.tgz',
+12 verbose tar pack   '/Users/syj/sun/react-large-uploader' ]
+13 verbose tarball /Users/syj/.npm/react-large-uploader/0.0.2/package.tgz
+14 verbose folder /Users/syj/sun/react-large-uploader
+15 verbose addLocalTarball adding from inside cache /Users/syj/.npm/react-large-uploader/0.0.2/package.tgz
+16 verbose correctMkdir /Users/syj/.npm correctMkdir not in flight; initializing
+17 silly cache afterAdd react-large-uploader@0.0.2
+18 verbose afterAdd /Users/syj/.npm/react-large-uploader/0.0.2/package/package.json not in flight; writing
+19 verbose correctMkdir /Users/syj/.npm correctMkdir not in flight; initializing
+20 verbose afterAdd /Users/syj/.npm/react-large-uploader/0.0.2/package/package.json written
+21 silly publish { name: 'react-large-uploader',
+21 silly publish   version: '0.0.2',
+21 silly publish   description: 'a react component using uploading of large file ',
+21 silly publish   main: 'index.js',
+21 silly publish   scripts:
+21 silly publish    { start: 'node start.js',
+21 silly publish      lib: 'rimraf lib && ./node_modules/.bin/babel src --copy-files --source-maps --extensions .jsx --out-dir lib',
+21 silly publish      build: 'rm -rf public && webpack',
+21 silly publish      test: 'echo "Error: no test specified" && exit 1' },
+21 silly publish   keywords: [ 'react', 'larger', 'uploader' ],
+21 silly publish   author: { name: 'sunyongjian' },
+21 silly publish   license: 'ISC',
+21 silly publish   devDependencies:
+21 silly publish    { 'babel-cli': '^6.26.0',
+21 silly publish      'babel-core': '^6.25.0',
+21 silly publish      'babel-eslint': '^7.2.3',
+21 silly publish      'babel-loader': '^7.0.0',
+21 silly publish      'babel-preset-es2015': '^6.24.1',
+21 silly publish      'babel-preset-react': '^6.24.1',
+21 silly publish      'babel-preset-stage-0': '^6.24.1',
+21 silly publish      'css-loader': '^0.28.4',
+21 silly publish      eslint: '^4.3.0',
+21 silly publish      'eslint-config-airbnb': '^15.1.0',
+21 silly publish      'eslint-loader': '^1.9.0',
+21 silly publish      'eslint-plugin-import': '^2.7.0',
+21 silly publish      'eslint-plugin-jsx-a11y': '^6.0.2',
+21 silly publish      'eslint-plugin-react': '^7.1.0',
+21 silly publish      express: '^4.15.3',
+21 silly publish      'file-loader': '^0.11.2',
+21 silly publish      'html-webpack-plugin': '^2.28.0',
+21 silly publish      less: '^2.7.2',
+21 silly publish      'less-loader': '^4.0.4',
+21 silly publish      morgan: '^1.8.2',
+21 silly publish      multer: '^1.3.0',
+21 silly publish      'style-loader': '^0.18.2',
+21 silly publish      webpack: '^2.6.1',
+21 silly publish      'webpack-dev-middleware': '^1.12.0',
+21 silly publish      'webpack-dev-server': '^2.5.0',
+21 silly publish      'webpack-hot-middleware': '^2.18.2' },
+21 silly publish   dependencies:
+21 silly publish    { 'expose-loader': '^0.7.3',
+21 silly publish      jquery: '^3.2.1',
+21 silly publish      react: '^15.6.1',
+21 silly publish      'react-dom': '^15.6.1' },
+21 silly publish   readme: '## introduction\n> 依赖 webuploader 做的 react 大文件切割上传组件。由于 webuploader 依赖 jq，所以\n\n\n\n## doc\n### Props\n- option\nobject\n初始化 webuploader 的配置对象\n默认\n```javascript\n{\n  auto: false,   // 选完文件自动上传\n  chunked: true,  // 是否切割\n  chunkSize: 5 * 1024 * 1024,  // 切片大小\n  chunkRetry: 3,  // 切片上传失败重试次数\n  threads: 1,\n  fileSizeLimit: 2000 * 1024 * 1024,\n  fileSingleSizeLimit: 2000 * 1024 * 1024,\n}\n```\n\n- width\n\nnumber\n默认 300\n\n- border\n\nbool\n是否显示边框\n\n- onChange(file)\nfunction\n\n当文件上传成功或者失败的时候，调用。参数是 file 对象：\n```\next:  后缀名\nid:  文件id\nlastModifiedDate:  最后修改时间\nname:  文件名\nsize:  文件大小\npercentage:  百分百\nsource:  源\nuploadStatus:  状态(成功/失败)\ntype:  mime 类型 \n```\n\n',
+21 silly publish   readmeFilename: 'README.md',
+21 silly publish   _id: 'react-large-uploader@0.0.2',
+21 silly publish   _shasum: '6a21534baddf352de3d4f1b830b0fcb8a4101741',
+21 silly publish   _from: '.' }
+22 verbose getPublishConfig undefined
+23 silly mapToRegistry name react-large-uploader
+24 silly mapToRegistry using default registry
+25 silly mapToRegistry registry https://registry.npmjs.org/
+26 silly mapToRegistry data Result {
+26 silly mapToRegistry   raw: 'react-large-uploader',
+26 silly mapToRegistry   scope: null,
+26 silly mapToRegistry   escapedName: 'react-large-uploader',
+26 silly mapToRegistry   name: 'react-large-uploader',
+26 silly mapToRegistry   rawSpec: '',
+26 silly mapToRegistry   spec: 'latest',
+26 silly mapToRegistry   type: 'tag' }
+27 silly mapToRegistry uri https://registry.npmjs.org/react-large-uploader
+28 verbose publish registryBase https://registry.npmjs.org/
+29 silly publish uploading /Users/syj/.npm/react-large-uploader/0.0.2/package.tgz
+30 verbose request uri https://registry.npmjs.org/react-large-uploader
+31 verbose request sending authorization for write operation
+32 info attempt registry request try #1 at 15:24:57
+33 verbose request using bearer token for auth
+34 verbose request id 52146f3661cb017f
+35 http request PUT https://registry.npmjs.org/react-large-uploader
+36 http 503 https://registry.npmjs.org/react-large-uploader
+37 verbose bad json <?xml version="1.0" encoding="utf-8"?>
+37 verbose bad json <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+37 verbose bad json  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+37 verbose bad json <html>
+37 verbose bad json   <head>
+37 verbose bad json     <title>503 first byte timeout</title>
+37 verbose bad json   </head>
+37 verbose bad json   <body>
+37 verbose bad json     <h1>Error 503 first byte timeout</h1>
+37 verbose bad json     <p>first byte timeout</p>
+37 verbose bad json     <h3>Guru Mediation:</h3>
+37 verbose bad json     <p>Details: cache-nrt6120-NRT 1504682735 741888791</p>
+37 verbose bad json     <hr>
+37 verbose bad json     <p>Varnish cache server</p>
+37 verbose bad json   </body>
+37 verbose bad json </html>
+38 error registry error parsing json
+39 verbose headers { server: 'Varnish',
+39 verbose headers   'retry-after': '0',
+39 verbose headers   'content-type': 'text/html; charset=utf-8',
+39 verbose headers   'content-length': '447',
+39 verbose headers   'accept-ranges': 'bytes',
+39 verbose headers   date: 'Wed, 06 Sep 2017 07:25:34 GMT',
+39 verbose headers   via: '1.1 varnish',
+39 verbose headers   connection: 'close',
+39 verbose headers   'x-served-by': 'cache-nrt6120-NRT',
+39 verbose headers   'x-cache': 'MISS',
+39 verbose headers   'x-cache-hits': '0',
+39 verbose headers   'x-timer': 'S1504682703.960283,VS0,VE31550' }
+40 info retry will retry, error on last attempt: SyntaxError: Unexpected token < in JSON at position 1
+40 info retry
+40 info retry <?xml version="1.0" encoding="utf-8"?>
+40 info retry <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+40 info retry  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+40 info retry <html>
+40 info retry   <head>
+40 info retry     <title>503 first byte timeout</title>
+40 info retry   </head>
+40 info retry   <body>
+40 info retry     <h1>Error 503 first byte timeout</h1>
+40 info retry     <p>first byte timeout</p>
+40 info retry     <h3>Guru Mediation:</h3>
+40 info retry     <p>Details: cache-nrt6120-NRT 1504682735 741888791</p>
+40 info retry     <hr>
+40 info retry     <p>Varnish cache server</p>
+40 info retry   </body>
+40 info retry </html>
+41 info attempt registry request try #2 at 15:25:42
+42 verbose request using bearer token for auth
+43 http request PUT https://registry.npmjs.org/react-large-uploader
+44 http 403 https://registry.npmjs.org/react-large-uploader
+45 verbose headers { 'content-type': 'application/json',
+45 verbose headers   'cache-control': 'max-age=300',
+45 verbose headers   'content-length': '91',
+45 verbose headers   'accept-ranges': 'bytes',
+45 verbose headers   date: 'Wed, 06 Sep 2017 07:25:45 GMT',
+45 verbose headers   via: '1.1 varnish',
+45 verbose headers   connection: 'keep-alive',
+45 verbose headers   'x-served-by': 'cache-nrt6121-NRT',
+45 verbose headers   'x-cache': 'MISS',
+45 verbose headers   'x-cache-hits': '0',
+45 verbose headers   'x-timer': 'S1504682745.038221,VS0,VE709',
+45 verbose headers   vary: 'Accept-Encoding, Accept' }
+46 verbose request invalidating /Users/syj/.npm/registry.npmjs.org/react-large-uploader on PUT
+47 error publish Failed PUT 403
+48 verbose stack Error: You cannot publish over the previously published version 0.0.2. : react-large-uploader
+48 verbose stack     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:302:12)
+48 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:290:14)
+48 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:210:14)
+48 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:187:22)
+48 verbose stack     at emitTwo (events.js:106:13)
+48 verbose stack     at Request.emit (events.js:191:7)
+48 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1048:10)
+48 verbose stack     at emitOne (events.js:96:13)
+48 verbose stack     at Request.emit (events.js:188:7)
+48 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:969:12)
+49 verbose statusCode 403
+50 verbose pkgid react-large-uploader
+51 verbose cwd /Users/syj/sun/react-large-uploader
+52 error Darwin 16.6.0
+53 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "publish"
+54 error node v6.11.2
+55 error npm  v3.10.10
+56 error code E403
+57 error You cannot publish over the previously published version 0.0.2. : react-large-uploader
+58 error If you need help, you may report this error at:
+58 error     <https://github.com/npm/npm/issues>
+59 verbose exit [ 1, true ]
