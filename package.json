@@ -1,6 +1,6 @@
 {
   "name": "react-large-uploader",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "a react component using uploading of large file ",
   "main": "index.js",
   "scripts": {
@@ -14,6 +14,10 @@
     "larger",
     "uploader"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sunyongjian/react-large-uploader.git"
+  },
   "author": "sunyongjian",
   "license": "ISC",
   "devDependencies": {
