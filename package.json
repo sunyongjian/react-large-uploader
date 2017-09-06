@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node start.js",
-    "lib": "./node_modules/.bin/rimraf lib && ./node_modules/.bin/babel src --copy-files --source-maps --extensions .jsx --out-dir lib",
+    "lib": "npm run less && ./node_modules/.bin/rimraf lib && ./node_modules/.bin/babel src --copy-files --source-maps --extensions .jsx --out-dir lib",
     "build": "rm -rf public && webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "less": "./node_modules/.bin/lessc src/upload.less src/upload.css"
   },
   "keywords": [
     "react",

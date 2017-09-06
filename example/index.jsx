@@ -5,6 +5,7 @@ import BigUpload from '../src/upload.jsx';
 const App = () => {
   const option = {
     resize: false,
+    auto: true,
     server: '/upload',
   };
   return (

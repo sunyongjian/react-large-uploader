@@ -81,6 +81,7 @@ export default class BigUpload extends React.Component {
 
   handleFileQueued = file => {
     const { fileList } = this.state;
+    const { option: { auto } } = this.props;
     file.percentage = 0;
     file.uploadStatus = 'md5';
     this.uploader.md5File(file)
@@ -91,6 +92,7 @@ export default class BigUpload extends React.Component {
       .then((val) => {
         this.setUploadStatus('init', file.id);
         this.setFileItem('md5Val', val, file.id);
+        if (auto) this.uploader.upload(file.id);
       });
     this.setState({
       fileList: [...fileList, file],
@@ -101,6 +103,7 @@ export default class BigUpload extends React.Component {
     const file = block.file;
     const fileMd5 = file.md5Val;
     data.md5Value = fileMd5;
+    this.setUploadStatus('process', file.id);
   }
 
   handleUploadProgress = (file, percentage) => {
@@ -145,7 +148,7 @@ export default class BigUpload extends React.Component {
       return (
         <div key={id} className="file-item" >
           <span className="file-name">{name}</span>
-          <span className={`file-status ${uploadStatus}`} onClick={this[clickName] ? this[clickName](id) : null}>{btn}</span>
+          <span className={`file-status ${uploadStatus}-status`} onClick={this[clickName] ? this[clickName](id) : null}>{btn}</span>
           <span className="delete" onClick={this.deleteFile(id)}>x</span>
           <div className="process">
             <div className={barClassName} style={{ width: `${percentage * 100}%` }}>
@@ -157,7 +160,7 @@ export default class BigUpload extends React.Component {
   }
 
   render() {
-    const { children, border } = this.props;
+    const { children, border, name } = this.props;
     const value = border ? {} : { border: 'none' };
     return (<div>
       <div className="container" style={value}>
@@ -169,7 +172,7 @@ export default class BigUpload extends React.Component {
             {children || <div className="btn-primary">选择文件</div>}
             <input
               type="file"
-              name="file"
+              name={name || 'file'}
               className="webuploader-element-invisible"
             />
           </div>
