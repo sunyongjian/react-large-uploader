@@ -11,6 +11,7 @@ const App = () => {
   return (
     <BigUpload
       options={options}
+      name={'formdata'}
       border={true}
       width={300}
       onChange={(file) => console.log(file)}

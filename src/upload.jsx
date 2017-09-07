@@ -118,10 +118,15 @@ export default class BigUpload extends React.Component {
   }
 
   handleBeforeSend = (block, data) => {
-    const file = block.file;
-    const fileMd5 = file.md5Val;
-    data.md5Value = fileMd5;
-    this.setUploadStatus('process', file.id);
+    const { file: { md5Val, id }, chunks } = block;
+
+    if (chunks === 1) { // 未切片的加入默认值
+      data.chunks = 1;
+      data.chunk = 0;
+    }
+    // data 中 加入 md5 值
+    data.md5Value = md5Val;
+    this.setUploadStatus('process', id);
   }
 
   handleUploadProgress = (file, percentage) => {
@@ -131,7 +136,7 @@ export default class BigUpload extends React.Component {
   handleUploadError = (file, reason) => {
     file.error = reason;
     this.setUploadStatus('error', file.id).then(() => {
-      this.props.onChange(file); 
+      this.props.onChange(file);
     });
   }
 
@@ -140,8 +145,6 @@ export default class BigUpload extends React.Component {
     this.setUploadStatus('done', file.id).then(() => {
       this.props.onChange(file);
     });
-
-    // this.props.onChange(file);
   }
 
   upload = (id) => () => {
@@ -182,7 +185,7 @@ export default class BigUpload extends React.Component {
   }
 
   render() {
-    const { children, border, name, width } = this.props;
+    const { children, border, width } = this.props;
     const value = border ? { width } : { width, border: 'none' };
     return (<div>
       <div className="container" style={value}>
@@ -194,7 +197,7 @@ export default class BigUpload extends React.Component {
             {children || <div className="btn-primary">选择文件</div>}
             <input
               type="file"
-              name={name || 'file'}
+              name="file"
               className="webuploader-element-invisible"
             />
           </div>
