@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import 'expose-loader?$!expose-loader?jQuery!jquery';
 import WebUploader from '../web/webuploader.nolog.min';
 import '../web/webuploader.css';
@@ -33,6 +34,21 @@ const uploadStatusConfig = {
 const currying = (fn, ...ahead) => (...behind) => fn(...ahead, ...behind);
 
 export default class BigUpload extends React.Component {
+  static defaultProps = {
+    options: {},
+    onChange: () => {},
+    width: 300,
+    border: true,
+  }
+
+  static propTypes = {
+    options: PropTypes.object,
+    onChange: PropTypes.func,
+    width: PropTypes.number,
+    border: PropTypes.bool,
+    children: PropTypes.element.isRequired,
+  }
+
   constructor() {
     super();
     this.state = {
@@ -66,15 +82,17 @@ export default class BigUpload extends React.Component {
   }
 
   setFileItem = (key, value, id) => {
-    const { fileList } = this.state;
-    const copy = [...fileList];
-    const result = copy.filter(item => item.id === id);
-    if (result.length) {
-      result[0][key] = value;
-      this.setState({
-        fileList: copy,
-      });
-    }
+    return new Promise((resolve) => {
+      const { fileList } = this.state;
+      const copy = [...fileList];
+      const result = copy.filter(item => item.id === id);
+      if (result.length) {
+        result[0][key] = value;
+        this.setState({
+          fileList: copy,
+        }, () => { resolve(); });
+      }
+    });
   }
 
   setUploadStatus = currying(this.setFileItem, 'uploadStatus')
@@ -112,14 +130,18 @@ export default class BigUpload extends React.Component {
 
   handleUploadError = (file, reason) => {
     file.error = reason;
-    this.props.onChange(file);
-    this.setUploadStatus('error', file.id);
+    this.setUploadStatus('error', file.id).then(() => {
+      this.props.onChange(file); 
+    });
   }
 
   handleUploadSuccess = (file, res) => {
     file.response = res._raw;
-    this.props.onChange(file);
-    this.setUploadStatus('done', file.id);
+    this.setUploadStatus('done', file.id).then(() => {
+      this.props.onChange(file);
+    });
+
+    // this.props.onChange(file);
   }
 
   upload = (id) => () => {
@@ -160,8 +182,8 @@ export default class BigUpload extends React.Component {
   }
 
   render() {
-    const { children, border, name } = this.props;
-    const value = border ? {} : { border: 'none' };
+    const { children, border, name, width } = this.props;
+    const value = border ? { width } : { width, border: 'none' };
     return (<div>
       <div className="container" style={value}>
         <div className="file-list">
