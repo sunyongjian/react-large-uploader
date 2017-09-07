@@ -39,6 +39,7 @@ export default class BigUpload extends React.Component {
     onChange: () => {},
     width: 300,
     border: true,
+    children: <div className= "btn-primary" >选择文件</div>,
   }
 
   static propTypes = {
@@ -46,7 +47,7 @@ export default class BigUpload extends React.Component {
     onChange: PropTypes.func,
     width: PropTypes.number,
     border: PropTypes.bool,
-    children: PropTypes.element.isRequired,
+    children: PropTypes.element,
   }
 
   constructor() {
@@ -194,7 +195,7 @@ export default class BigUpload extends React.Component {
         </div>
         <div className="content" >
           <div id="picker">
-            {children || <div className="btn-primary">选择文件</div>}
+            {children}
             <input
               type="file"
               name="file"

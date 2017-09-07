@@ -11,13 +11,10 @@ const App = () => {
   return (
     <BigUpload
       options={options}
-      name={'formdata'}
-      border={true}
+      border
       width={300}
       onChange={(file) => console.log(file)}
-    >
-      <div className="btn-primary">选择文件</div>
-    </BigUpload>
+    />
   );
 };
 
