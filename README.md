@@ -1,17 +1,27 @@
-## introduction
-由于上传大文件的时候，服务器会有大小的限制，所以前端在上传大文件的时候需要切割上传。此组件支持大文件自动切割并发上传，失败自动继续上传，不刷新页面的端点续传，多文件上传。实现了基本 UI，进度条，状态，继续上传等交互。如果对 UI 没什么要求...  是可以直接拿过去用的。
+## react-large-uploader
+React component for uploading large file 
+[![build status](https://travis-ci.org/sunyongjian/react-large-uploader.svg?branch=master&style=flat-square)](https://travis-ci.org/sunyongjian/react-large-uploader)
+[![npm version](https://img.shields.io/npm/v/react-large-uploader.svg?style=flat-square)](https://www.npmjs.com/package/react-large-uploader)
+[![npm downloads](https://img.shields.io/npm/dm/react-large-uploader.svg?style=flat-square)](https://www.npmjs.com/package/react-large-uploader)
 
-基于 webuploader 中 html5 处理大文件的功能，对兼容性没有做测试，现代浏览器应该都是兼容的。另外，webuploader 是严重依赖 jquery的。但是我在它的官网看到了有 jquery 的替代品，以为很好就拿过来开发了，然而找了半天没有找到。webuploader 还没有去除对 jquery 的依赖，所以安装的时候会依赖 jq...  强迫症，所以在本来就有 jq 的老项目，我还是忍了...
-
-## start
-### install
+### Installation
 ```
 npm install react-large-uploader --save
 or
 yarn add react-large-uploader
 ```
 
-### demo
+### Introduction
+由于上传大文件的时候，服务器会有大小的限制，所以前端在上传大文件的时候需要切割上传。此组件支持大文件自动切割并发上传，失败自动继续上传，不刷新页面的端点续传，多文件上传。实现了基本 UI，进度条，状态，继续上传等交互。如果对 UI 没什么要求...  是可以直接拿过去用的。
+
+基于 webuploader 中 html5 处理大文件的功能，对兼容性没有做测试，现代浏览器应该都是兼容的。另外，webuploader 是严重依赖 jquery的。但是我在它的官网看到了有 jquery 的替代品，以为很好就拿过来开发了，然而找了半天没有找到。webuploader 还没有去除对 jquery 的依赖，所以安装的时候会依赖 jq...  强迫症，所以在本来就有 jq 的老项目，我还是忍了...
+
+
+### Example
+
+![image1](./example/upload.png)
+![image2](./example/upload1.png)
+
 包里集成了一个 example，还写了一个简单的接收文件的 server，没有做切片合并的处理。在根目录下的 start.js
 ```javascript
 const options = {
@@ -32,10 +42,9 @@ return (
 ```
 只需要几个参数就可以完成创建。
 
-## docs
+### API
 
-### Props
-参数
+#### 参数
 - options
 {object}
 初始化 webuploader 的配置对象
@@ -87,7 +96,7 @@ return (
 
 ```
 
-### query
+#### query
 传给服务器的信息包括：
 - chunks
 切片数量

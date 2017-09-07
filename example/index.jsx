@@ -11,11 +11,11 @@ const App = () => {
   return (
     <BigUpload
       options={options}
-      border={false}
+      border={true}
       width={300}
       onChange={(file) => console.log(file)}
     >
-      <div>选择</div>
+      <div className="btn-primary">选择文件</div>
     </BigUpload>
   );
 };
