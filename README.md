@@ -1,10 +1,14 @@
 ## react-large-uploader
 React component for uploading large file 
+
+
 [![build status](https://travis-ci.org/sunyongjian/react-large-uploader.svg?branch=master&style=flat-square)](https://travis-ci.org/sunyongjian/react-large-uploader)
 [![npm version](https://img.shields.io/npm/v/react-large-uploader.svg?style=flat-square)](https://www.npmjs.com/package/react-large-uploader)
 [![npm downloads](https://img.shields.io/npm/dm/react-large-uploader.svg?style=flat-square)](https://www.npmjs.com/package/react-large-uploader)
 
 ### Installation
+请安装最新版本
+
 ```
 npm install react-large-uploader --save
 or
