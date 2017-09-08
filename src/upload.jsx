@@ -39,7 +39,7 @@ export default class BigUpload extends React.Component {
     onChange: () => {},
     width: 300,
     border: true,
-    children: <div className= "btn-primary" >选择文件</div>,
+    children: <div className="btn-primary" >选择文件</div>,
   }
 
   static propTypes = {
@@ -54,11 +54,7 @@ export default class BigUpload extends React.Component {
     super();
     this.state = {
       fileList: [],
-      uploadStatus: 'init',
-      isMd5: false,
     };
-    this.fileIds = [];
-    this.complete = 0;
   }
 
   componentDidMount() {
@@ -177,8 +173,7 @@ export default class BigUpload extends React.Component {
           <span className={`file-status ${uploadStatus}-status`} onClick={this[clickName] ? this[clickName](id) : null}>{btn}</span>
           <span className="delete" onClick={this.deleteFile(id)}>x</span>
           <div className="process">
-            <div className={barClassName} style={{ width: `${percentage * 100}%` }}>
-            </div>
+            <div className={barClassName} style={{ width: `${percentage * 100}%` }} />
           </div>
         </div>
       );
@@ -187,9 +182,9 @@ export default class BigUpload extends React.Component {
 
   render() {
     const { children, border, width } = this.props;
-    const value = border ? { width } : { width, border: 'none' };
+    const style = border ? { width } : { width, border: 'none' };
     return (<div>
-      <div className="container" style={value}>
+      <div className="container" style={style}>
         <div className="file-list">
           {this.renderFileList()}
         </div>
