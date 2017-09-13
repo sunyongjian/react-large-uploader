@@ -40,6 +40,7 @@ export default class BigUpload extends React.Component {
     width: 300,
     border: true,
     children: <div className="btn-primary" >选择文件</div>,
+    beforeFileQueued: () => true,
   }
 
   static propTypes = {
@@ -48,6 +49,7 @@ export default class BigUpload extends React.Component {
     width: PropTypes.number,
     border: PropTypes.bool,
     children: PropTypes.element,
+    beforeFileQueued: PropTypes.func,
   }
 
   constructor() {
@@ -70,6 +72,7 @@ export default class BigUpload extends React.Component {
       ...options,
       auto: false,
     });
+    uploader.on('beforeFileQueued', this.handleBeforeFileQueued);
     uploader.on('fileQueued', this.handleFileQueued);
     uploader.on('uploadBeforeSend', this.handleBeforeSend);
     uploader.on('uploadProgress', this.handleUploadProgress);
@@ -93,6 +96,11 @@ export default class BigUpload extends React.Component {
   }
 
   setUploadStatus = currying(this.setFileItem, 'uploadStatus')
+
+  handleBeforeFileQueued = file => {
+    const { beforeFileQueued } = this.props;
+    return beforeFileQueued(file);
+  }
 
   handleFileQueued = file => {
     const { fileList } = this.state;
@@ -191,11 +199,6 @@ export default class BigUpload extends React.Component {
         <div className="content" >
           <div id="picker">
             {children}
-            <input
-              type="file"
-              name="file"
-              className="webuploader-element-invisible"
-            />
           </div>
         </div>
       </div>

@@ -100,6 +100,28 @@ return (
 
 ```
 
+- beforeFileQueued(file)
+{function}
+返回值 true or false
+
+文件加入队列之前的回调，可以在这里做文件的校验，拦截。WebUploader 已经帮我们处理了比如文件为空，文件格式不对的，但是没有交互信息。当我们需要把这些信息反馈给用户时，可以在这里做。
+返回 true，文件加入队列。
+返回 false，文件不加入。
+
+```javascript
+const beforeFileQueued = (file) => {
+  if (file.size === 0) {
+    alert('不能上传空文件~');
+    return false;
+  }
+  if (file.ext !== 'csv') {
+    alert('文件格式有误~');
+    return false;
+  }
+  return true;
+}
+```
+
 #### query
 传给服务器的信息包括：
 - chunks

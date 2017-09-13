@@ -7,6 +7,9 @@ const App = () => {
     resize: false,
     auto: true,
     server: '/upload',
+    accept: {
+      extensions: 'csv',
+    },
   };
   return (
     <BigUpload
@@ -14,6 +17,17 @@ const App = () => {
       border
       width={300}
       onChange={(file) => console.log(file)}
+      beforeFileQueued={(file) => {
+        if (file.size === 0) {
+          alert('不能上传空文件哦~');
+          return false;
+        }
+        if (file.ext !== 'csv') {
+          alert('只能上传csv哦~');
+          return false;
+        }
+        return true;
+      }}
     />
   );
 };
