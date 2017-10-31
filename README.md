@@ -23,11 +23,6 @@ yarn add react-large-uploader
 
 ### Example
 
-![image1](./example/upload.png)
-![image2](./example/upload1.png)
-
-包里集成了一个 example，还写了一个简单的接收文件的 server，没有做切片合并的处理，server 在根目录下的 start.js。
-
 组件使用：
 ```javascript
 const options = {
@@ -47,6 +42,12 @@ return (
 );
 ```
 只需要几个参数就可以完成创建。
+
+
+![image1](./example/upload.png)
+![image2](./example/upload1.png)
+
+另外 example 目录中，还写了一个简单的接收文件的 server，没有做切片合并的处理，在根目录下的 `start.js`。
 
 
 
