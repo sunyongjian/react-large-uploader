@@ -124,7 +124,9 @@ export default class BigUpload extends React.Component {
 
   handleBeforeSend = (block, data) => {
     const { file: { md5Val, id }, chunks } = block;
-
+    const { beforeSend } = this.props;
+    const v = beforeSend();
+    Object.assign(data, v);
     if (chunks === 1) { // 未切片的加入默认值
       data.chunks = 1;
       data.chunk = 0;

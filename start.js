@@ -43,7 +43,10 @@ router.post('/upload', upload.any(), function (req, res, next) {
       res.status(500).send('Something broke!');
       flag = false;
     } else {
-      res.send('文件上传成功');
+      res.send({
+        code: 0,
+        data: {},
+      });
     }
   }
 });

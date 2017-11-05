@@ -28,6 +28,7 @@ const App = () => {
         }
         return true;
       }}
+      beforeSend={() => ({ fileType: '1' })}
     />
   );
 };
