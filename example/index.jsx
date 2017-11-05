@@ -28,7 +28,7 @@ const App = () => {
         }
         return true;
       }}
-      beforeSend={() => ({ fileType: '1' })}
+      fillDataBeforeSend={() => ({ fileType: '1' })}
     />
   );
 };

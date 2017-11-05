@@ -41,6 +41,7 @@ export default class BigUpload extends React.Component {
     border: true,
     children: <div className="btn-primary" >选择文件</div>,
     beforeFileQueued: () => true,
+    fillDataBeforeSend: () => ({}),
   }
 
   static propTypes = {
@@ -50,6 +51,7 @@ export default class BigUpload extends React.Component {
     border: PropTypes.bool,
     children: PropTypes.element,
     beforeFileQueued: PropTypes.func,
+    fillDataBeforeSend: PropTypes.func,
   }
 
   constructor() {
@@ -124,8 +126,8 @@ export default class BigUpload extends React.Component {
 
   handleBeforeSend = (block, data) => {
     const { file: { md5Val, id }, chunks } = block;
-    const { beforeSend } = this.props;
-    const v = beforeSend();
+    const { fillDataBeforeSend } = this.props;
+    const v = fillDataBeforeSend();
     Object.assign(data, v);
     if (chunks === 1) { // 未切片的加入默认值
       data.chunks = 1;

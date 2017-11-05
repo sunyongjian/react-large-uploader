@@ -127,6 +127,12 @@ const beforeFileQueued = (file) => {
 }
 ```
 
+- fillDataBeforeSend
+{function}
+返回值 object
+
+用于 uploader 自动发送请求之前，填充 data 对象。此函数返回的对象中数据，都会被 merge 到最终发送的 data 中。不过要注意默认的 key-name，不能和默认的 query 冲突，否则会被覆盖。
+
 #### query
 传给服务器的信息包括：
 - chunks
