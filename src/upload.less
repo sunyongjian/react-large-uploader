@@ -3,7 +3,21 @@
 @bottonTextSize: 12px;
 @errorColor: red;
 
-.container {
+.webuploader-container {
+	position: relative;
+}
+.webuploader-element-invisible {
+	position: absolute !important;
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px,1px,1px,1px);
+}
+.webuploader-pick-disable {
+	opacity: 0.6;
+	pointer-events:none;
+}
+
+
+.large-uploader {
 	border: 1px solid #e9e9e9;		
 	width: 300px;
 	font-size: @mainTextSize;

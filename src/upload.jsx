@@ -2,9 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import 'expose-loader?$!expose-loader?jQuery!jquery';
 import WebUploader from '../web/webuploader.nolog.min';
-import '../web/webuploader.css';
-import './upload.css';
-
 
 const uploadStatusConfig = {
   init: {
@@ -33,7 +30,7 @@ const uploadStatusConfig = {
 
 const currying = (fn, ...ahead) => (...behind) => fn(...ahead, ...behind);
 
-export default class BigUpload extends React.Component {
+export default class LargeUploader extends React.Component {
   static defaultProps = {
     options: {},
     onChange: () => {},
@@ -196,7 +193,7 @@ export default class BigUpload extends React.Component {
     const { children, border, width } = this.props;
     const style = border ? { width } : { width, border: 'none' };
     return (<div>
-      <div className="container" style={style}>
+      <div className="large-uploader" style={style}>
         <div className="file-list">
           {this.renderFileList()}
         </div>

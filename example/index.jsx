@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import BigUpload from '../src/upload.jsx';
+import LargeUploader from '../index';
 
 const App = () => {
   const options = {
@@ -11,24 +11,28 @@ const App = () => {
       extensions: 'csv',
     },
   };
+  const config = {
+    title: '上传文件',
+    options,
+    width: 300,
+    onChange: (file) => console.log(file),
+    beforeFileQueued: (file) => {
+      if (file.size === 0) {
+        alert('不能上传空文件哦~');
+        return false;
+      }
+      if (file.ext !== 'csv') {
+        alert('只能上传csv哦~');
+        return false;
+      }
+      return true;
+    },
+    fillDataBeforeSend: () => ({ fileType: '1' }),
+  };
+
   return (
-    <BigUpload
-      options={options}
-      border
-      width={300}
-      onChange={(file) => console.log(file)}
-      beforeFileQueued={(file) => {
-        if (file.size === 0) {
-          alert('不能上传空文件哦~');
-          return false;
-        }
-        if (file.ext !== 'csv') {
-          alert('只能上传csv哦~');
-          return false;
-        }
-        return true;
-      }}
-      fillDataBeforeSend={() => ({ fileType: '1' })}
+    <LargeUploader
+      {...config}
     />
   );
 };
