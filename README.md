@@ -56,11 +56,12 @@ return (
 #### 参数
 - options
 {object}
-初始化 webuploader 的配置对象
+初始化 webuploader 的配置对象，可以参照 webuploader
 默认
 ```javascript
 {
-  auto: false,   // 添加完文件是否自动上传
+  server: '/upload', // request url
+  auto: false,   // 添加完文件是否自动上传
   chunked: true,  // 是否切割
   chunkSize: 5 * 1024 * 1024,  // 切片大小
   chunkRetry: 3,  // 切片上传失败重试次数
