@@ -15,7 +15,7 @@ const App = () => {
     title: '上传文件',
     options,
     width: 300,
-    onChange: (file) => console.log(file),
+    onChange: (file, list) => console.log(file, list),
     beforeFileQueued: (file) => {
       if (file.size === 0) {
         alert('不能上传空文件哦~');

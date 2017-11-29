@@ -1,6 +1,6 @@
 {
   "name": "react-large-uploader",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "a react component using uploading of large file ",
   "main": "index.js",
   "scripts": {

@@ -84,10 +84,10 @@ return (
 {string}
 默认 'file'
 
-- onChange(file)
+- onChange(file, fileList)
 {function}
 
-当文件上传成功或者失败的时候，调用。参数是 file 对象，具体包括：
+当文件上传成功、失败或者删除文件的时候调用。第一个参数是 file 对象，具体包括：
 ```javascript
 {
   ext:  //后缀名
@@ -105,6 +105,8 @@ return (
 }
 
 ```
+
+第二个参数为当前的 fileList 数组。
 
 - beforeFileQueued(file)
 {function}

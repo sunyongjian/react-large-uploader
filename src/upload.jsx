@@ -142,14 +142,14 @@ export default class LargeUploader extends React.Component {
   handleUploadError = (file, reason) => {
     file.error = reason;
     this.setUploadStatus('error', file.id).then(() => {
-      this.props.onChange(file);
+      this.props.onChange(file, this.state.fileList);
     });
   }
 
   handleUploadSuccess = (file, res) => {
     file.response = res._raw;
     this.setUploadStatus('done', file.id).then(() => {
-      this.props.onChange(file);
+      this.props.onChange(file, this.state.fileList);
     });
   }
 
@@ -164,9 +164,13 @@ export default class LargeUploader extends React.Component {
 
   deleteFile = (id) => () => {
     const { fileList } = this.state;
-    const result = fileList.filter((item) => item.id !== id);
+    const index = fileList.findIndex((item) => item.id === id);
+    const curFile = fileList[index];
+    fileList.splice(index, 1);
     this.setState({
-      fileList: result,
+      fileList,
+    }, () => {
+      this.props.onChange(curFile, this.state.fileList);
     });
     this.uploader.removeFile(this.uploader.getFile(id, true));
   }
