@@ -28,6 +28,10 @@ const App = () => {
       return true;
     },
     fillDataBeforeSend: () => ({ fileType: '1' }),
+    uploadResponse: (file, ret) => {
+      const { code } = ret;
+      return code === 0;
+    },
   };
 
   return (

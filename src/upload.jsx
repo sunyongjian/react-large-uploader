@@ -39,6 +39,7 @@ export default class LargeUploader extends React.Component {
     children: <div className="btn-primary" >选择文件</div>,
     beforeFileQueued: () => true,
     fillDataBeforeSend: () => ({}),
+    uploadResponse: () => true,
   }
 
   static propTypes = {
@@ -49,6 +50,7 @@ export default class LargeUploader extends React.Component {
     children: PropTypes.element,
     beforeFileQueued: PropTypes.func,
     fillDataBeforeSend: PropTypes.func,
+    uploadResponse: PropTypes.func,
   }
 
   constructor() {
@@ -75,6 +77,7 @@ export default class LargeUploader extends React.Component {
     uploader.on('fileQueued', this.handleFileQueued);
     uploader.on('uploadBeforeSend', this.handleBeforeSend);
     uploader.on('uploadProgress', this.handleUploadProgress);
+    uploader.on('uploadAccept', this.handleUploadAccept);
     uploader.on('uploadError', this.handleUploadError);
     uploader.on('uploadSuccess', this.handleUploadSuccess);
     this.uploader = uploader;
@@ -137,6 +140,11 @@ export default class LargeUploader extends React.Component {
 
   handleUploadProgress = (file, percentage) => {
     this.setFileItem('percentage', percentage, file.id);
+  }
+
+  handleUploadAccept = (file, ret) => {
+    const { uploadResponse } = this.props;
+    return uploadResponse(file, ret);
   }
 
   handleUploadError = (file, reason) => {
