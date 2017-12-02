@@ -142,7 +142,7 @@ const beforeFileQueued = (file) => {
 {function}
 返回值 true/false
 
-注册上传操作收到 response 的函数，用于判断是否上传成功。默认是上传返回 statusCode = 400 就认为成功，传入这个函数可以对返回值信息做验证。接收两个参数，1. 当前的 file 文件 2. 接口 response
+注册上传操作收到 response 的函数，用于判断是否上传成功。默认是上传返回状态码 200 就认为成功，传入这个函数可以对返回值信息做验证。接收两个参数，1. 当前的 file 文件 2. 接口 response
 
 此函数的返回值，true 表示成功，false 表示失败。
 
