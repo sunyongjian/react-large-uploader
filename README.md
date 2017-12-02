@@ -138,6 +138,22 @@ const beforeFileQueued = (file) => {
 
 用于 uploader 自动发送请求之前，填充 data 对象。此函数返回的对象中数据，都会被 merge 到最终发送的 data 中。不过要注意默认的 key-name，不能和默认的 query 冲突，否则会被覆盖。
 
+- uploadResponse(file, res)
+{function}
+返回值 true/false
+
+注册上传操作收到 response 的函数，用于判断是否上传成功。默认是上传返回 statusCode = 400 就认为成功，传入这个函数可以对返回值信息做验证。接收两个参数，1. 当前的 file 文件 2. 接口 response
+
+此函数的返回值，true 表示成功，false 表示失败。
+
+eg:
+```js
+uploadResponse: (file, res) => {
+  const { code } = res;
+	  return code === 0;
+	}
+```
+
 #### query
 默认传给服务器的信息包括：
 - chunks
