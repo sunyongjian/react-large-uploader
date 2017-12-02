@@ -150,8 +150,8 @@ eg:
 ```js
 uploadResponse: (file, res) => {
   const { code } = res;
-	  return code === 0;
-	}
+  return code === 0;
+}
 ```
 
 #### query
