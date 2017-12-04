@@ -56,20 +56,22 @@ return (
 #### 参数
 - options {object}
 
-  初始化 webuploader 的配置对象，可以参照 webuploader 
-  默认
-  ```javascript
+  初始化 webuploader 的配置对象，可以参照 webuploader。  
+  
+  ```js
+  // 默认
   {
-    server: '/upload', // request url
-    auto: false,   // 添加完文件是否自动上传
+    server: '/upload', // request url
+    auto: false,  // 添加完文件是否自动上传
     chunked: true,  // 是否切割
     chunkSize: 5 * 1024 * 1024,  // 切片大小
     chunkRetry: 3,  // 切片上传失败重试次数
     threads: 1, // 并发数量
     fileSizeLimit: 2000 * 1024 * 1024,  // 文件总大小的限制，超出则先不加入队列
     fileSingleSizeLimit: 2000 * 1024 * 1024,  // 单个文件的大小限制，超出不加入队列
-  }
-  ```
+   }
+  
+   ```
 
 - width {int}
 
@@ -82,7 +84,7 @@ return (
 
 - name  {string}
 
-  默认 'file'
+  `defaultValue： 'file'`
 
 - onChange(file, fileList)  {function}
 
@@ -109,7 +111,7 @@ return (
 
 - beforeFileQueued(file) {function}
 
-  返回值 true or false
+  `return: true or false`
 
   文件加入队列之前的回调，可以在这里做文件的校验，拦截。WebUploader 已经帮我们处理了比如文件为空，文件格式不对的，但是没有交互信息。当我们需要把这些信息反馈给用户时，可以在这里做。
   返回 true，文件加入队列。
@@ -131,7 +133,7 @@ return (
 
 - fillDataBeforeSend {function}
 
-  返回值 object
+  `return: object`
 
   自定义参数
 
@@ -139,7 +141,7 @@ return (
 
 - uploadResponse(file, res) {function}
 
-  返回值 true/false
+  `return: true/false`
 
   注册上传操作收到 response 的函数，用于判断是否上传成功。默认是上传返回状态码 200 就认为成功，传入这个函数可以对返回值信息做验证。接收两个参数，1. 当前的 file 文件 2. 接口 response
 
