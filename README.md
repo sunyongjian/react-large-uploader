@@ -54,117 +54,116 @@ return (
 ### Usage
 
 #### 参数
-- options
-{object}
-初始化 webuploader 的配置对象，可以参照 webuploader
-默认
-```javascript
-{
-  server: '/upload', // request url
-  auto: false,   // 添加完文件是否自动上传
-  chunked: true,  // 是否切割
-  chunkSize: 5 * 1024 * 1024,  // 切片大小
-  chunkRetry: 3,  // 切片上传失败重试次数
-  threads: 1, // 并发数量
-  fileSizeLimit: 2000 * 1024 * 1024,  // 文件总大小的限制，超出则先不加入队列
-  fileSingleSizeLimit: 2000 * 1024 * 1024,  // 单个文件的大小限制，超出不加入队列
-}
-```
+- options {object}
 
-- width
-{int}
-默认 300
-区域的大小，为了能更好的展示文件名，进度条，300 是最小的宽度了。
-
-- border
-{bool}
-是否显示边框
-
-- name
-{string}
-默认 'file'
-
-- onChange(file, fileList)
-{function}
-
-当文件上传成功、失败或者删除文件的时候调用。第一个参数是 file 对象，具体包括：
-```javascript
-{
-  ext:  //后缀名
-  id: //文件id
-  md5Val: // 整个文件的md5 值，用于后端识别文件。
-  lastModifiedDate: //最后修改时间
-  name:  //文件名
-  size:  //文件大小
-  percentage:  //百分百 0.5
-  source:  //源
-  uploadStatus:  //状态(成功/失败)
-  type:  //mime 类型
-  response: // 上传成功后，服务器返回的 value
-  error: // 出错的原因， 'server'
-}
-
-```
-
-第二个参数为当前的 fileList 数组。
-
-- beforeFileQueued(file)
-{function}
-返回值 true or false
-
-文件加入队列之前的回调，可以在这里做文件的校验，拦截。WebUploader 已经帮我们处理了比如文件为空，文件格式不对的，但是没有交互信息。当我们需要把这些信息反馈给用户时，可以在这里做。
-返回 true，文件加入队列。
-返回 false，文件不加入。
-
-```javascript
-const beforeFileQueued = (file) => {
-  if (file.size === 0) {
-    alert('不能上传空文件~');
-    return false;
+  初始化 webuploader 的配置对象，可以参照 webuploader 
+  默认
+  ```javascript
+  {
+    server: '/upload', // request url
+    auto: false,   // 添加完文件是否自动上传
+    chunked: true,  // 是否切割
+    chunkSize: 5 * 1024 * 1024,  // 切片大小
+    chunkRetry: 3,  // 切片上传失败重试次数
+    threads: 1, // 并发数量
+    fileSizeLimit: 2000 * 1024 * 1024,  // 文件总大小的限制，超出则先不加入队列
+    fileSingleSizeLimit: 2000 * 1024 * 1024,  // 单个文件的大小限制，超出不加入队列
   }
-  if (file.ext !== 'csv') {
-    alert('文件格式有误~');
-    return false;
+  ```
+
+- width {int}
+
+  默认 300
+  区域的大小，为了能更好的展示文件名，进度条，300 是最小的宽度了。
+
+- border {bool}
+
+  是否显示边框
+
+- name  {string}
+
+  默认 'file'
+
+- onChange(file, fileList)  {function}
+
+  当文件上传成功、失败或者删除文件的时候调用。第一个参数是 file 对象，具体包括：
+  ```javascript
+  {
+    ext:  //后缀名
+    id: //文件id
+    md5Val: // 整个文件的md5 值，用于后端识别文件。
+    lastModifiedDate: //最后修改时间
+    name:  //文件名
+    size:  //文件大小
+    percentage:  //百分百 0.5
+    source:  //源
+    uploadStatus:  //状态(成功/失败)
+    type:  //mime 类型
+    response: // 上传成功后，服务器返回的 value
+    error: // 出错的原因， 'server'
   }
-  return true;
-}
-```
 
-- fillDataBeforeSend
-{function}
-返回值 object
+  ```
 
-自定义参数
+  第二个参数为当前的 fileList 数组。
 
-用于 uploader 自动发送请求之前，填充 data 对象。此函数返回的对象中数据，都会被 merge 到最终发送的 data 中。不过要注意默认的 key-name，不能和默认的 query 冲突，否则会被覆盖。
+- beforeFileQueued(file) {function}
 
-- uploadResponse(file, res)
-{function}
-返回值 true/false
+  返回值 true or false
 
-注册上传操作收到 response 的函数，用于判断是否上传成功。默认是上传返回状态码 200 就认为成功，传入这个函数可以对返回值信息做验证。接收两个参数，1. 当前的 file 文件 2. 接口 response
+  文件加入队列之前的回调，可以在这里做文件的校验，拦截。WebUploader 已经帮我们处理了比如文件为空，文件格式不对的，但是没有交互信息。当我们需要把这些信息反馈给用户时，可以在这里做。
+  返回 true，文件加入队列。
+  返回 false，文件不加入。
 
-此函数的返回值，true 表示成功，false 表示失败。
+  ```javascript
+  const beforeFileQueued = (file) => {
+    if (file.size === 0) {
+      alert('不能上传空文件~');
+      return false;
+    }
+    if (file.ext !== 'csv') {
+      alert('文件格式有误~');
+      return false;
+    }
+    return true;
+  }
+  ```
 
-eg:
-```js
-uploadResponse: (file, res) => {
-  const { code } = res;
-  return code === 0;
-}
-```
+- fillDataBeforeSend {function}
+
+  返回值 object
+
+  自定义参数
+
+  用于 uploader 自动发送请求之前，填充 data 对象。此函数返回的对象中数据，都会被 merge 到最终发送的 data 中。不过要注意默认的 key-name，不能和默认的 query 冲突，否则会被覆盖。
+
+- uploadResponse(file, res) {function}
+
+  返回值 true/false
+
+  注册上传操作收到 response 的函数，用于判断是否上传成功。默认是上传返回状态码 200 就认为成功，传入这个函数可以对返回值信息做验证。接收两个参数，1. 当前的 file 文件 2. 接口 response
+
+  此函数的返回值，true 表示成功，false 表示失败。
+
+  eg:
+  ```js
+  uploadResponse: (file, res) => {
+    const { code } = res;
+    return code === 0;
+  }
+  ```
 
 #### query
 默认传给服务器的信息包括：
 - chunks
-切片数量
+  切片数量
 - chunk
-当前序号，从 0 开始
+  当前序号，从 0 开始
 - md5Value
-文件的 md5 值，区分文件，合并的唯一标示
+  文件的 md5 值，区分文件，合并的唯一标示
 - id
-同一批次上传的文件的序号，没啥用
+  同一批次上传的文件的序号，没啥用
 - filename
-文件名
+  文件名
 - size
-切片、文件大小
+  切片、文件大小
