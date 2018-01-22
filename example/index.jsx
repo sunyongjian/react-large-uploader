@@ -1,6 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
-import LargeUploader from '../index';
+import LargeUploader from 'react-large-uploader';
+import 'react-large-uploader/lib/upload.css';
+
 
 const App = () => {
   const options = {

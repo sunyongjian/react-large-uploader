@@ -4141,6 +4141,15 @@ react-dom@^15.6.1:
     object-assign "^4.1.0"
     prop-types "^15.5.10"
 
+react-large-uploader@^0.1.12:
+  version "0.1.12"
+  resolved "http://registry.npm.taobao.org/react-large-uploader/download/react-large-uploader-0.1.12.tgz#383f17fa6ea18478d16a9afe1f4b4468021c9910"
+  dependencies:
+    expose-loader "^0.7.3"
+    jquery "^3.2.1"
+    react "^15.6.1"
+    react-dom "^15.6.1"
+
 react@^15.6.1:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/react/-/react-15.6.1.tgz#baa8434ec6780bde997cdc380b79cd33b96393df"

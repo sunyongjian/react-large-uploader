@@ -25,20 +25,23 @@ yarn add react-large-uploader
 
 组件使用：
 ```javascript
+import LargeUploader from 'react-larger-uploader';
+import 'react-larger-uploader/lib/css';
+
 const options = {
   resize: false,
   auto: true,
   server: '/upload',
 };
 return (
-  <BigUpload
+  <LargeUploader
     options={options}
     border={false}
     width={300}
     onChange={(file) => console.log(file)}
   >
     <div>选择</div>
-  </BigUpload>
+  </LargeUploader>
 );
 ```
 只需要几个参数就可以完成创建。
