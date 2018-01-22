@@ -1,6 +1,6 @@
 {
   "name": "react-large-uploader",
-  "version": "0.1.14",
+  "version": "0.1.19",
   "description": "a react component using uploading of large file ",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,8 @@
     "lib": "npm run less && ./node_modules/.bin/rimraf lib && ./node_modules/.bin/babel src --copy-files --source-maps --extensions .jsx --out-dir lib",
     "build": "rm -rf public && webpack",
     "less": "./node_modules/.bin/lessc src/upload.less src/upload.css",
-    "prepublish": "npm run lib && npm --no-git-tag-version  version patch"
+    "prepub": "npm run lib && npm --no-git-tag-version  version patch",
+    "pub": "npm publish"
   },
   "keywords": [
     "react",
