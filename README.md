@@ -26,7 +26,7 @@ yarn add react-large-uploader
 组件使用：
 ```javascript
 import LargeUploader from 'react-larger-uploader';
-import 'react-larger-uploader/lib/css';
+import 'react-large-uploader/lib/upload.css';
 
 const options = {
   resize: false,
